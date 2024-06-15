@@ -90,10 +90,23 @@ return output;
 // 8^2 = 8 x 8 = 64.  Here, 8 is the base and 2 is the exponent.
 // Example:  exponent(4,3);  // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
-var exponent = function(base, exp, count=0) {
-if (count === exp) {
-
+var exponent = function(base, exp, count=0, output=1) {
+//when the counter reaches the exponent number, return the output
+  if (count === exp) {
+  return output;
 }
+//if the exponent is negative
+if (exp < 0) {
+  //make the base 1/base and make the exp positive
+  base = 1 / base;
+  exp = Math.abs(exp);
+}
+ //multiply output variable by the base
+ output *= base;
+ //add one to the count
+ count++;
+ //send the function back through
+ return exponent(base, exp, count, output);
 
 };
 
