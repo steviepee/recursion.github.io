@@ -134,12 +134,31 @@ return powerOfTwo (n / 2);
 }
 
 // 9. Write a function that accepts a string a reverses it.
-var reverse = function(string) {
+var reverse = function(string, output=[]) {
+  if (Array.isArray(string) && string.length === 0) {
+    return output.join('');
+  }
+  if (typeof string === 'string') {string = string.split('')} 
+  output.unshift(string[0]);
+  return reverse(string.splice(1), output);
 };
-
+//**************************************************************************** */
 // 10. Write a function that determines if a string is a palindrome.
-var palindrome = function(string) {
-};
+var palindrome = function(string, output=[]) {//if nothing's been put into the output
+  if (output.length === 0) {//new variable test will be = to an array of the string[should only happen at the first iteration]Skip spaces
+    var test = string.replace(/\s/g).split('');
+  }//check if string has been turned into an array, the string array is empty, and output is equal to the test array(skip spaces, case insensetive)
+  if (Array.isArray(string) && string.length === 0 && output.join().toLowerCase() === test.join().toLowerCase()) {//return true
+    return true;//if string's an array and empty, and the output isn't equal to test(same stipulations)
+  } else if (Array.isArray(string) && string.length === 0 && output.join().toLowerCase() !== test.join().toLowerCase()) {//return false
+    return false;
+  }//if string is still a string, turn it into an array
+ // if (typeof string === 'string') {string = string.replace(/\s/g).split('')};
+  //take the first index of string array and add it to the front of the output array
+  output.unshift(string[0]);//send string back through the function minus the first element
+  return palindrome(string.slice(1), output);
+
+};//Don't know why this never stops*********************************
 
 // 11. Write a function that returns the remainder of x divided by y without using the
 // modulo (%) operator.
