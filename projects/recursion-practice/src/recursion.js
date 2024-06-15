@@ -99,7 +99,7 @@ var exponent = function(base, exp, count=0, output=1) {
 if (exp < 0) {
   //make the base 1/base and make the exp positive
   base = 1 / base;
-  exp *= -1;
+  exp *= -1;//or (exp - exp) + exp
 }//******************************************************************* */
  //multiply output variable by the base
  output *= base;
@@ -203,11 +203,17 @@ var gcd = function(x, y) {
 // compareStr('', '') // true
 // compareStr('tomato', 'tomato') // true
 var compareStr = function(str1, str2) {
+  if (str1.length === 0 && str2.length === 0) {return true}
+  if(str1[0] !== str2[0]) {return false}
+  return compareStr(str1.slice(1), str2.slice(1));
 };
 
 // 16. Write a function that accepts a string and creates an array where each letter
 // occupies an index of the array.
-var createArray = function(str){
+var createArray = function(str, output=[]){
+  if (str.length === 0) {return output;}
+  output.push(str[0]);
+  return createArray(str.slice(1), output);
 };
 
 // 17. Reverse the order of an array
