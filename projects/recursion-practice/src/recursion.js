@@ -5,13 +5,15 @@
 // Example:  5! = 5 x 4 x 3 x 2 x 1 = 120
 // factorial(5);  // 120
 var factorial = function(n, output=1) {
-  //when the output gets to 0,
+  //when the n gets to 0,
+  if (n < 0) {return null};
   if (n === 0) {
     //return the  fact number
     return output; 
-  }
-  output *= n;
+  } else {
+  output = output * n;
   return factorial(n - 1, output);
+  }
 };
 
 // 2. Compute the sum of an array of integers.
@@ -48,6 +50,10 @@ return isEven(n - 2);
 // sumBelow(10); // 45
 // sumBelow(7); // 21
 var sumBelow = function(n, output=0) {
+  if (n < 0) {
+    output += (n + 1);
+    return sumBelow(n + 1, output);
+  }
   if (n === 0) {
     return output;
   }
@@ -58,15 +64,37 @@ var sumBelow = function(n, output=0) {
 // 6. Get the integers in range (x, y).
 // Example:  range(2, 9);  // [3, 4, 5, 6, 7, 8]
 var range = function(x, y, output=[]) {
-  
-};
+  if(output[output.length - 1] === y) {
+  output.pop();
+return output;
+}
+  if (x === y) {
+    return output;
+  } 
+  if (x < y) {
+    x++;
+    output.push(x);
+    return range(x, y, output);
+  }
+  if (x > y) {
+    x--;
+    output.push(x);
+    return range(x, y, output);
+  }
+return output;
+  }
+
 
 // 7. Compute the exponent of a number.
 // The exponent of a number says how many times the base number is used as a factor.
 // 8^2 = 8 x 8 = 64.  Here, 8 is the base and 2 is the exponent.
 // Example:  exponent(4,3);  // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
-var exponent = function(base, exp) {
+var exponent = function(base, exp, count=0) {
+if (count === exp) {
+
+}
+
 };
 
 // 8. Determine if a number is a power of two.
