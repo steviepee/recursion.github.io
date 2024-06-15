@@ -115,15 +115,22 @@ if (exp < 0) {
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
+  //if n is negative, make it positive
   if (n < 0) {n *= -1};
+  // if n is 1, 
   if (n === 1) {
+    //return true, it's a power of two
     return true;
-  } else if (n === 2) {
+  } //chain circumstances so the checks coincide..if n resolves to 2, it's a power of two
+  else if (n === 2) {
+   //so return true
     return true;
+  //if n doesn't exist,/ if n is a decimaled number, it must have picked up a remainder, so 
   } else if (!n) {
-  return false;
-}
-return powerOfTwo (n / 2)
+  //in either case, return false
+    return false;
+}//if we're still here, divide the argument by 2
+return powerOfTwo (n / 2);
 }
 
 // 9. Write a function that accepts a string a reverses it.
