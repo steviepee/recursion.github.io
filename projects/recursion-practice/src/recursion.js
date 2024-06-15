@@ -94,13 +94,13 @@ var exponent = function(base, exp, count=0, output=1) {
 //when the counter reaches the exponent number, return the output
   if (count === exp) {
   return output;
-}
+}//****************************************************************************** */
 //if the exponent is negative
 if (exp < 0) {
   //make the base 1/base and make the exp positive
   base = 1 / base;
-  exp = Math.abs(exp);
-}
+  exp *= -1;
+}//******************************************************************* */
  //multiply output variable by the base
  output *= base;
  //add one to the count
@@ -115,7 +115,16 @@ if (exp < 0) {
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
-};
+  if (n < 0) {n *= -1};
+  if (n === 1) {
+    return true;
+  } else if (n === 2) {
+    return true;
+  } else if (!n) {
+  return false;
+}
+return powerOfTwo (n / 2)
+}
 
 // 9. Write a function that accepts a string a reverses it.
 var reverse = function(string) {
