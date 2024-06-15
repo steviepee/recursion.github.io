@@ -153,12 +153,12 @@ var palindrome = function(string, output=[]) {//if nothing's been put into the o
   } else if (Array.isArray(string) && string.length === 0 && output.join().toLowerCase() !== test.join().toLowerCase()) {//return false
     return false;
   }//if string is still a string, turn it into an array
- // if (typeof string === 'string') {string = string.replace(/\s/g).split('')};
+ if (typeof string === 'string') {string = string.replace(/\s/g).split('')};
   //take the first index of string array and add it to the front of the output array
   output.unshift(string[0]);//send string back through the function minus the first element
   return palindrome(string.slice(1), output);
 
-};//Don't know why this never stops*********************************
+};//Don't know why join is "undefined"..*********************************(cannot read the properties of undefined)
 
 // 11. Write a function that returns the remainder of x divided by y without using the
 // modulo (%) operator.
@@ -167,12 +167,22 @@ var palindrome = function(string, output=[]) {//if nothing's been put into the o
 // modulo(22,6) // 4
 var modulo = function(x, y) {
 };
-
+//**************************************************************************** */
 // 12. Write a function that multiplies two numbers without using the * operator  or
 // JavaScript's Math object.
 // ATTENTION DO NOT LEAVE COMMENTS IN THIS FUNCTION. The test is looking for any ('/').
-var multiply = function(x, y) {
-};
+var multiply = function(x, y, count=0, output=0) {
+  if (count === y) {return output};
+  if(count > y) {
+    output -= x;
+    count--
+    return multiply(x, y, count, output);
+  }
+  output += x;
+  count++;
+  return multiply(x, y, count, output);
+
+};//let's talk about minuses and negative intergers************************************************************
 
 // 13. Write a function that divides two numbers without using the / operator  or
 // JavaScript's Math object.
