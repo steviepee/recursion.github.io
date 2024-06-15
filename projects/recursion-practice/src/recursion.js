@@ -217,13 +217,20 @@ var createArray = function(str, output=[]){
 };
 
 // 17. Reverse the order of an array
-var reverseArr = function (array) {
+var reverseArr = function (array, output=[]) {
+  if(array.length === 0) {return output};
+  output.unshift(array[0]);
+  return reverseArr(array.slice(1), output);
 };
 
 // 18. Create a new array with a given value and length.
 // buildList(0,5) // [0,0,0,0,0]
 // buildList(7,3) // [7,7,7]
-var buildList = function(value, length) {
+var buildList = function(value, length, output=[], count=0) {
+  if (count === length) {return output};
+  output.push(value);
+  count++;
+  return buildList(value, length, output, count);
 };
 
 // 19. Count the occurence of a value inside a list.
