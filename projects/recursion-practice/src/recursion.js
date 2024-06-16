@@ -282,14 +282,34 @@ var fibonacci = function(n) {
 // nthFibo(5); // 5
 // nthFibo(7); // 13
 // nthFibo(3); // 2
-var nthFibo = function(n) {
+var nthFibo = function(n, output=0, prev=0, count=0) {
+  //if n is negative, return null
+  if (n < 0) {return null};
+  //when the counter gets to n, return the current output
+  if (count === n) {return output};
+  //create holding variable for the current output
+  let hold = output;
+  //add the output to the previous value
+  output += prev;
+  //if output is still 0, have it become 1
+  if (output === 0) {output = 1};
+  //set prev to the current value of the hold variable(the previous fib output)
+  prev = hold;
+  //add one to the count
+  count ++;
+  //send the function back around with all the fixins
+  return nthFibo(n, output, prev, count);
 };
-
+//*********************************************************************************************** */
 // 26. Given an array of words, return a new array containing each word capitalized.
 // var words = ['i', 'am', 'learning', 'recursion'];
 // capitalizedWords(words); // ['I', 'AM', 'LEARNING', 'RECURSION']
-var capitalizeWords = function(input) {
-};
+var capitalizeWords = function(input, output=[], count=0) {
+  if (input.length === 0) {return output}
+  output[count] = input[0].toUpperCase();
+  count++;
+  return capitalizeWords(input.slice(1), output, count);
+};//*****************tried to push without pushing, it still just comes out w/o an array. just 0***********************
 
 // 27. Given an array of strings, capitalize the first letter of each index.
 // capitalizeFirst(['car', 'poop', 'banana']); // ['Car', 'Poop', 'Banana']
