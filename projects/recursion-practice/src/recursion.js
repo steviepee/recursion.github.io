@@ -411,7 +411,31 @@ var minimizeZeroes = function(array, output=[]) {
 // their original sign.  The first number in the index always needs to be positive.
 // alternateSign([2,7,8,3,1,4]) // [2,-7,8,-3,1,-4]
 // alternateSign([-2,-7,8,3,-1,4]) // [2,-7,8,-3,1,-4]
-var alternateSign = function(array) {
+var alternateSign = function(array, output=[]) {
+  if(array.length === 0){return output};
+  if(output.length === 0 && array[0] >= 0) {
+    output.push(array[0]);
+    return alternateSign(array.slice(1), output);
+  }
+  if (output.length === 0 && array[0] < 0) {
+    output.push(array[0] * -1);
+    return alternateSign(array.slice(1), output);
+  }
+  if (output[output.length - 1] < 0) {
+    if (array[0] < 0) {
+      output.push(array[0] * -1);
+    } else {
+      output.push(array[0]);
+    }
+    return alternateSign(array.slice(1), output);
+  } else {
+    if(array[0] < 0) {
+      output.push(array[0]);
+    } else {
+      output.push(array[0] * -1);
+    }
+  }
+  return alternateSign(array.slice(1), output);
 };
 
 // 35. Given a string, return a string with digits converted to their word equivalent.
