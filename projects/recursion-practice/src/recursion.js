@@ -300,20 +300,35 @@ var nthFibo = function(n, output=0, prev=0, count=0) {
   //send the function back around with all the fixins
   return nthFibo(n, output, prev, count);
 };
-//*********************************************************************************************** */
+
 // 26. Given an array of words, return a new array containing each word capitalized.
 // var words = ['i', 'am', 'learning', 'recursion'];
 // capitalizedWords(words); // ['I', 'AM', 'LEARNING', 'RECURSION']
 var capitalizeWords = function(input, output=[], count=0) {
+  //when input is empty return the output
   if (input.length === 0) {return output}
+  //w/o push, have output to the current count = the current value of the first input
   output[count] = input[0].toUpperCase();
+  //add one to the count
   count++;
+  //send the function back through with one less element in input
   return capitalizeWords(input.slice(1), output, count);
-};//*****************tried to push without pushing, it still just comes out w/o an array. just 0***********************
+};
 
 // 27. Given an array of strings, capitalize the first letter of each index.
 // capitalizeFirst(['car', 'poop', 'banana']); // ['Car', 'Poop', 'Banana']
-var capitalizeFirst = function(array) {
+var capitalizeFirst = function(array, output=[], count=0) {
+  //when array is empty, return the output
+  if(array.length === 0) {return output};
+  //create a variable to represent a to the zeroth of the zeroth
+  let x = array[0][0];
+  //have the output array copy the first value of array w the first character capitalized
+  output[count] = `${x.toUpperCase()}${array[0].slice(1)}`;
+  //add one to the count
+  count++;
+  //send the function back with the first element sliced
+  return capitalizeFirst(array.slice(1), output, count);
+
 };
 
 // 28. Return the sum of all even numbers in an object containing nested objects.
@@ -326,13 +341,23 @@ var capitalizeFirst = function(array) {
 // };
 // nestedEvenSum(obj1); // 10
 var nestedEvenSum = function(obj) {
-};
 
+};
+//********************************************************************** */
 // 29. Flatten an array containing nested arrays.
 // Example: flatten([1,[2],[3,[[4]]],5]); // [1,2,3,4,5]
-var flatten = function(arrays) {
-};
+var flatten = function(arrays, output=[]) {
+  if (typeof array[0] === 'number') {
+    output.push(array[0]);
+  } else if (typeof array[0][0] === 'number') {
+    output.push(array[0][0]);
+  } else if (typeof array[0][0][0] === 'number') {
+    output.push(array[0][0][0]);
+  }
+  }
 
+};
+//wanna talk about this one*********************************************
 // 30. Given a string, return an object containing tallies of each letter.
 // letterTally('potato'); // {'p':1, 'o':2, 't':2, 'a':1}
 var letterTally = function(str, obj) {
