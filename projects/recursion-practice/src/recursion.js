@@ -382,25 +382,29 @@ var compress = function(list, output=[], hold) {
   if(output.length === 0) {
     hold = list[0];
     output.push(list[0])
-    return compress(list.slice(1), output);
+    return compress(list.slice(1), output, hold);
   }
   
   if(list[0] !== hold) {output.push(list[0])};
   hold = output[output.length - 1];
-  return compress(list.slice(1), output);
+  return compress(list.slice(1), output, hold);
 };
-
 
 // 32. Augment every element in a list with a new value where each element is an array
 // itself.
 // Example: augmentElements([[],[3],[7]], 5); // [[5],[3,5],[7,5]]
 var augmentElements = function(array, aug) {
+
 };
 
 // 33. Reduce a series of zeroes to a single 0.
 // minimizeZeroes([2,0,0,0,1,4]) // [2,0,1,4]
 // minimizeZeroes([2,0,0,0,1,0,0,4]) // [2,0,1,0,4]
-var minimizeZeroes = function(array) {
+var minimizeZeroes = function(array, output=[]) {
+  if (array.length === 0) {return output};
+  if(array[0] !== 0) {output.push(array[0])};
+  if (array[0] === 0 && output[output.length - 1] !== 0) {output.push(array[0])};
+  return minimizeZeroes(array.slice(1), output);
 };
 
 // 34. Alternate the numbers in an array between positive and negative regardless of
