@@ -444,39 +444,38 @@ var alternateSign = function(array, output=[]) {
 var numToText = function(str, output=[], hold=[]) {
   if(output.length === 0) {hold = str.split(' ')};
   if(hold.length === 0) {return output.join(' ')};
-  if(typeof hold[0] !== 'number'){output.push(hold[0])}
-  if(typeof hold[0] === 'number') {
-  switch(hold[0]){
-    case 1:
+    switch(hold[0]){
+    case '1':
       output.push('one');
       break;
-      case 2:
+      case '2':
         output.push('two');
         break;
-        case 3:
+        case '3':
           output.push('three');
           break;
-          case 4:
+          case '4':
             output.push('four');
             break;
-            case 5:
+            case '5':
               output.push('five');
               break;
-              case 6:
+              case '6':
                 output.push('six');
                 break;
-                case 7:
+                case '7':
                   output.push('seven');
                   break;
-                  case 8:
+                  case '8':
                     output.push('eight');
                     break;
-                    case 9:
+                    case '9':
                       output.push('nine')
                       break;
-  }
+                      default:
+                        output.push(hold[0]);
 }
-  return numToText(hold.slice(1), output);
+  return numToText(str, output, hold.slice(1));
 
 
 };
